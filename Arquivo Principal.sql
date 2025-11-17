@@ -49,27 +49,122 @@ CREATE TABLE Emprestimos(
     FOREIGN KEY (IdExemplar) REFERENCES Exemplares(Id)
 );
 
-CREATE TABLE LivrosAutores(
-    IdLivro INT NOT NULL,
-    IdAutor INT NOT NULL,
-    FOREIGN KEY (IdLivro) REFERENCES Livros(Id),
-    FOREIGN KEY (IdAutor) REFERENCES Autores(Id)
-);
-
 -- Alterações nas tabelas
 ALTER TABLE Exemplares ADD UNIQUE (CodigoPatrimonio);
+UPDATE Estudantes SET Nome = 'Larissa Gomes Gaspar' WHERE RA = 2023000100;
+UPDATE Estudantes SET EmailInstitucional = 'larissa.gaspar@uniaazz.org.br' WHERE RA = 2023000100;
+
 
 -- Visualização das tabelas inteiras
-SELECT * FROM Estudantes;
-SELECT * FROM Autores;
-SELECT * FROM Livros;
-SELECT * FROM Exemplares;
+SELECT * FROM Estudantes; SELECT * FROM Autores;
+SELECT * FROM Livros; SELECT * FROM Exemplares;
 SELECT * FROM Emprestimos;
-SELECT * FROM LivrosAutores;
 
+-- Inserção de dados nas tabelas
+INSERT INTO Estudantes (RA, Nome, EmailInstitucional, Curso, DataCadastro)
+VALUES (2023000100, 'Larissa', 'larissagomes@uniaazz.org.br', 'Sistemas de Informação','2024-06-21'),
+       (2023000101, 'Ana Clara Silva', 'ana.silva@uniaazz.org.br', 'Ciência da Computação', '2023-08-15'),
+       (2023000102, 'Bruno Henrique Oliveira', 'bruno.oliveira@uniaazz.org.br', 'Engenharia de Software', '2023-08-16'),
+       (2023000103, 'Carla Mendes Costa', 'carla.costa@uniaazz.org.br', 'Análise e Desenvolvimento de Sistemas', '2023-09-01'),
+       (2023000104, 'Diego Alves Pereira', 'diego.pereira@uniaazz.org.br', 'Ciência da Computação', '2023-09-05'),
+       (2023000105, 'Fernanda Lima Rodrigues', 'fernanda.rodrigues@uniaazz.org.br', 'Engenharia de Software', '2023-09-10'),
+       (2023000106, 'Gabriel Santos', 'gabriel.santos@uniaazz.org.br', 'Sistemas de Informação', '2023-10-02'),
+       (2023000107, 'Helena Ribeiro', 'helena.ribeiro@uniaazz.org.br', 'Análise e Desenvolvimento de Sistemas', '2023-10-12'),
+       (2023000108, 'Igor Martins', 'igor.martins@uniaazz.org.br', 'Ciência da Computação', '2023-11-01'),
+       (2023000109, 'Juliana Costa', 'juliana.costa@uniaazz.org.br', 'Engenharia de Software', '2023-11-15'),
+       (2023000110, 'Lucas Fernandes', 'lucas.fernandes@uniaazz.org.br', 'Sistemas de Informação', '2024-01-10'),
+       (2023000111, 'Mariana Souza', 'mariana.souza@uniaazz.org.br', 'Ciência da Computação', '2024-01-20'),
+       (2023000112, 'Nicolas Almeida', 'nicolas.almeida@uniaazz.org.br', 'Análise e Desenvolvimento de Sistemas', '2024-02-05'),
+       (2023000113, 'Olivia Nunes', 'olivia.nunes@uniaazz.org.br', 'Engenharia de Software', '2024-02-18'),
+       (2023000114, 'Pedro Henrique Castro', 'pedro.castro@uniaazz.org.br', 'Sistemas de Informação', '2024-03-01'),
+       (2023000115, 'Quésia Barros', 'quesia.barros@uniaazz.org.br', 'Ciência da Computação', '2024-03-12'),
+       (2023000116, 'Rafael Gomes', 'rafael.gomes@uniaazz.org.br', 'Análise e Desenvolvimento de Sistemas', '2024-04-02'),
+       (2023000117, 'Sabrina Teixeira', 'sabrina.teixeira@uniaazz.org.br', 'Engenharia de Software', '2024-04-15'),
+       (2023000118, 'Thiago Ramos', 'thiago.ramos@uniaazz.org.br', 'Sistemas de Informação', '2024-05-03'),
+       (2023000119, 'Vanessa Duarte', 'vanessa.duarte@uniaazz.org.br', 'Ciência da Computação', '2024-05-20'),
+       (2023000120, 'William Correia', 'william.correia@uniaazz.org.br', 'Análise e Desenvolvimento de Sistemas', '2024-06-01');
 
+INSERT INTO Autores (Nome, Nacionalidade, Biografia)
+VALUES ('Donald E. Knuth', 'Estadunidense', 'Matemático e cientista da computação, autor da série "The Art of Computer Programming", considerada bíblica na área de algoritmos.'),
+       ('Robert C. Martin', 'Estadunidense', 'Engenheiro de software conhecido como "Uncle Bob", autor de "Código Limpo" e defensor dos princípios SOLID e do desenvolvimento ágil.'),
+       ('Eric Freeman', 'Estadunidense', 'Coautor da série "Use a Cabeça!", incluindo "Use a Cabeça! Padrões de Projeto", que ensina conceitos complexos de forma visual e acessível.'),
+       ('Kathy Sierra', 'Estadunidense', 'Criadora da série "Use a Cabeça!", especialista em aprendizagem e experiência do usuário em educação técnica.'),
+       ('Machado de Assis', 'Brasileiro', 'Escritor brasileiro do século XIX, considerado o maior nome da literatura nacional, autor de "Dom Casmurro" e "Memórias Póstumas de Brás Cubas".'),
+       ('Clarice Lispector', 'Brasileira', 'Escritora ucraniana naturalizada brasileira, conhecida por seu estilo introspectivo e inovador em obras como "A Hora da Estrela" e "Laços de Família".'),
+       ('Andrew S. Tanenbaum', 'Estadunidense', 'Professor e autor de livros clássicos em ciência da computação, como "Sistemas Operacionais Modernos" e "Redes de Computadores".'),
+       ('David J. Malan', 'Estadunidense', 'Professor de ciência da computação em Harvard, criador do curso CS50, com livros e materiais didáticos amplamente usados em universidades.'),
+       ('Silberschatz', 'Estadunidense', 'Coautor do livro "Sistema de Banco de Dados", referência global em cursos de banco de dados em faculdades de tecnologia.'),
+       ('Grady Booch', 'Estadunidense', 'Um dos criadores da UML e autor de "UML: Guia do Usuário", influente na engenharia de software e modelagem de sistemas.'),
+       ('Lygia Fagundes Telles', 'Brasileira', 'Escritora brasileira, membro da Academia Brasileira de Letras, conhecida por obras como "As Meninas" e "Ciranda de Pedra".'),
+       ('Martin Fowler', 'Britânico', 'Especialista em engenharia de software, autor de "Refatoração" e "Padrões de Arquitetura", referência em práticas modernas de desenvolvimento.'),
+       ('Paulo Silveira', 'Brasileiro', 'Instrutor e autor brasileiro especializado em desenvolvimento Java, Spring e testes automatizados, com livros usados em cursos técnicos.'),
+       ('João Antônio de Paula', 'Brasileiro', 'Autor de livros didáticos de programação e lógica para iniciantes, com foco em ensino técnico e universitário no Brasil.'),
+       ('Kent Beck', 'Estadunidense', 'Pioneiro do desenvolvimento ágil e do Extreme Programming (XP), autor de "Test-Driven Development: By Example", fundamental para práticas modernas de QA.');
 
+INSERT INTO Livros (IdAutor, Titulo, Descricao, Categoria, DataLancamento, ISBN, Editora)
+VALUES (1, 'The Art of Computer Programming, Vol. 1', 'Fundamentos de algoritmos e estruturas de dados, obra clássica e referência para cientistas da computação.', 'Tecnologia', '1968-01-01', '978-0-201-03801-9', 'Addison-Wesley'),
+       (1, 'The Art of Computer Programming, Vol. 2', 'Seminumerical Algorithms: explora geração de números aleatórios e aritmética de precisão arbitrária.', 'Tecnologia', '1969-01-01', '978-0-201-03804-0', 'Addison-Wesley'),
+       (2, 'Código Limpo', 'Manual prático para escrever código legível, sustentável e de alta qualidade, com exemplos em múltiplas linguagens.', 'Tecnologia', '2008-08-01', '978-85-7608-267-2', 'Bookman'),
+       (3, 'Use a Cabeça! Padrões de Projeto', 'Aprenda padrões de projeto com uma abordagem visual e envolvente, ideal para iniciantes e profissionais.', 'Tecnologia', '2004-10-25', '978-0-596-00712-6', 'Alta Books'),
+       (3, 'Use a Cabeça! SQL', 'Domine SQL com exercícios práticos e uma narrativa didática que transforma conceitos abstratos em aprendizado concreto.', 'Tecnologia', '2007-03-01', '978-0-596-52684-7', 'Alta Books'),
+       (5, 'Dom Casmurro', 'Clássico da literatura brasileira que explora ciúmes, memória e subjetividade em narrativa envolvente.', 'Literatura', '1899-01-01', NULL, 'Livraria Garnier'),
+       (5, 'Memórias Póstumas de Brás Cubas', 'Romance inovador com narrador morto, misturando ironia, crítica social e existencialismo.', 'Literatura', '1881-01-01', NULL, 'Editora Civilização Brasileira'),
+       (6, 'A Hora da Estrela', 'Breve e poderoso romance sobre uma datilógrafa nordestina no Rio de Janeiro, explorando identidade e solidão.', 'Literatura', '1977-01-01', NULL, 'Editora Rocco'),
+       (6, 'Laços de Família', 'Coleção de contos que mergulham na intimidade feminina, com linguagem poética e introspectiva.', 'Literatura', '1960-01-01', NULL, 'Editora do Autor'),
+       (7, 'Sistemas Operacionais Modernos', 'Livro-texto global sobre arquitetura, processos, memória, segurança e virtualização em sistemas operacionais.', 'Tecnologia', '1992-01-01', '978-85-430-0847-6', 'Pearson'),
+       (7, 'Redes de Computadores', 'Aborda desde os fundamentos até protocolos modernos, com foco em arquitetura TCP/IP e internet.', 'Tecnologia', '1989-01-01', '978-85-8143-060-1', 'Pearson'),
+       (8, 'CS50: Introdução à Ciência da Computação', 'Material oficial do curso de Harvard, com fundamentos de algoritmos, estruturas de dados e web.', 'Tecnologia', '2015-09-01', NULL, 'Harvard University Press'),
+       (9, 'Sistema de Banco de Dados', 'Referência essencial para cursos universitários, com teoria e prática de modelagem, SQL e transações.', 'Tecnologia', '1997-01-01', '978-85-65837-08-0', 'McGraw-Hill'),
+       (10, 'UML: Guia do Usuário', 'Manual completo sobre modelagem de software com UML, da concepção à implementação.', 'Tecnologia', '2005-06-01', '978-85-352-1701-7', 'Campus'),
+       (11, 'As Meninas', 'Romance que acompanha três jovens em diferentes contextos sociais durante a ditadura militar no Brasil.', 'Literatura', '1973-01-01', NULL, 'Editora Ática'),
+       (12, 'Refatoração', 'Guia prático para melhorar a estrutura interna do código sem alterar seu comportamento externo.', 'Tecnologia', '1999-07-01', '978-85-7307-615-4', 'Bookman'),
+       (12, 'Padrões de Arquitetura de Software', 'Explora estilos arquiteturais como microsserviços, camadas e eventos.', 'Tecnologia', '2021-01-01', '978-85-5603-010-8', 'Bookman'),
+       (13, 'Spring Framework: Desenvolvimento Ágil em Java', 'Guia prático para desenvolvedores que desejam dominar Spring Boot e desenvolvimento backend.', 'Tecnologia', '2018-03-01', NULL, 'Casa do Código'),
+       (13, 'Testes Automatizados com JUnit', 'Ensina boas práticas de teste unitário, integração e TDD em aplicações Java.', 'Tecnologia', '2020-02-01', NULL, 'Casa do Código'),
+       (14, 'Lógica de Programação', 'Introdução clara e didática aos fundamentos da programação, com pseudocódigo e exercícios.', 'Tecnologia', '2016-01-01', NULL, 'Érica'),
+       (14, 'Algoritmos e Estruturas de Dados', 'Curso completo para estudantes de TI, com implementações em linguagens populares.', 'Tecnologia', '2017-01-01', NULL, 'Érica'),
+       (15, 'Test-Driven Development: By Example', 'O livro que popularizou o TDD, com exemplos práticos de desenvolvimento guiado por testes.', 'Tecnologia', '2002-11-01', '978-0-321-14653-3', 'Addison-Wesley');
 
+INSERT INTO Exemplares (IdLivro, Status, CodigoPatrimonio, DataAquisicao, Localizacao)
+VALUES (1, 'disponível', 'BIB-00001', '2022-03-10', 'Estante A1'),
+       (1, 'emprestado', 'BIB-00002', '2022-03-10', 'Estante A1'),
+       (2, 'disponível', 'BIB-00003', '2022-03-10', 'Estante A1'),
+       (3, 'emprestado', 'BIB-00004', '2022-08-20', 'Estante B2'),
+       (3, 'disponível', 'BIB-00005', '2023-01-15', 'Estante B2'),
+       (3, 'em manutenção', 'BIB-00006', '2023-01-15', 'Reserva Técnica'),
+       (4, 'disponível', 'BIB-00007', '2022-10-05', 'Estante C1'),
+       (4, 'emprestado', 'BIB-00008', '2022-10-05', 'Estante C1'),
+       (5, 'disponível', 'BIB-00009', '2022-11-12', 'Estante C1'),
+       (6, 'disponível', 'BIB-00010', '2021-06-30', 'Estante L1'),
+       (6, 'emprestado', 'BIB-00011', '2023-05-20', 'Estante L1'),
+       (7, 'disponível', 'BIB-00012', '2021-06-30', 'Estante L1'),
+       (8, 'disponível', 'BIB-00013', '2022-09-10', 'Estante L2'),
+       (9, 'emprestado', 'BIB-00014', '2022-09-10', 'Estante L2'),
+       (10, 'disponível', 'BIB-00015', '2022-04-18', 'Estante A2'),
+       (10, 'disponível', 'BIB-00016', '2023-02-10', 'Estante A2'),
+       (11, 'emprestado', 'BIB-00017', '2022-04-18', 'Estante A2'),
+       (12, 'disponível', 'BIB-00018', '2023-08-01', 'Estante D1'),
+       (13, 'disponível', 'BIB-00019', '2022-07-14', 'Estante A3'),
+       (13, 'emprestado', 'BIB-00020', '2023-03-22', 'Estante A3'),
+       (14, 'disponível', 'BIB-00021', '2022-09-30', 'Estante D1'),
+       (15, 'disponível', 'BIB-00022', '2023-01-05', 'Estante L2'),
+       (16, 'emprestado', 'BIB-00023', '2022-11-20', 'Estante D2'),
+       (16, 'disponível', 'BIB-00024', '2023-02-14', 'Estante D2'),
+       (17, 'disponível', 'BIB-00025', '2023-06-10', 'Estante D2'),
+       (18, 'disponível', 'BIB-00026', '2023-04-05', 'Estante E1'),
+       (19, 'emprestado', 'BIB-00027', '2023-05-12', 'Estante E1'),
+       (20, 'disponível', 'BIB-00028', '2022-10-10', 'Estante E1'),
+       (21, 'disponível', 'BIB-00029', '2022-11-15', 'Estante E1'),
+       (22, 'disponível', 'BIB-00030', '2022-12-01', 'Estante D2');
 
-
-
+INSERT INTO Emprestimos (RaEstudante, IdExemplar, DataEmprestimo, DataDevolucaoPrevista, DataDevolucaoReal, Status)
+VALUES (2023000101, 4,  '2025-11-01', '2025-11-15', NULL, 'Ativo'),   
+       (2023000103, 17, '2025-10-20', '2025-11-03', NULL, 'Ativo'),
+       (2023000105, 9,  '2025-10-25', '2025-11-08', NULL, 'Ativo'),
+       (2023000102, 7,  '2025-10-01', '2025-10-15', '2025-10-14', 'Concluído'), 
+       (2023000104, 13, '2025-09-10', '2025-09-24', '2025-09-24', 'Concluído'),
+       (2023000106, 23, '2025-09-01', '2025-09-15', '2025-09-20', 'Atrasado'),
+       (2023000108, 14, '2025-08-10', '2025-08-24', '2025-08-30', 'Atrasado'),
+       (2023000110, 19, '2024-11-05', '2024-11-19', '2024-11-18', 'Concluído'),
+       (2023000112, 27, '2025-05-10', '2025-05-24', '2025-06-05', 'Atrasado'),
+       (2023000115, 24, '2025-11-10', '2025-11-24', '2025-11-10', 'Concluído');
