@@ -56,4 +56,5 @@ CREATE TABLE Emprestimos(
 ALTER TABLE Exemplares ADD UNIQUE (CodigoPatrimonio);
 UPDATE Estudantes SET Nome = 'Larissa Gomes Gaspar' WHERE RA = 2023000100;
 UPDATE Estudantes SET EmailInstitucional = 'larissa.gaspar@uniaazz.org.br' WHERE RA = 2023000100;
+UPDATE Livros SET Editora = 'Editora de Tecnologia' WHERE Editora = 'Érica';
 
