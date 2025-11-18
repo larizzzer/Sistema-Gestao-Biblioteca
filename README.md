@@ -29,7 +29,7 @@ Com esse novo sistema, a biblioteca passa a contar com:
 Tudo isso com mais transparência e eficiência.
 ## 📁 Arquivos
 - `Tabelas.sql` → Estrutura do banco  
-- `InserindoDados.sql` → Inserção com dados consistentes (com IA)
+- `InserindoDados.sql` → Inserção com dados consistentes
 - `Consultas.sql` → Consultas com `JOIN` e outras visualizações 
 - `Projeto.pdf` → Explicação do projeto em arquivo PDF
 
