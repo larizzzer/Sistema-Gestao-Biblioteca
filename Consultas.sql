@@ -1,4 +1,4 @@
--- Perguntas de Negócio
+-- Perguntas de Negócio, onde algumas dúvidas que o sistema anterior não conseguia responder
 
 -- Quantos estudantes tem empréstimos em atraso?
 SELECT es.Nome AS 'Nome', 
@@ -31,6 +31,22 @@ FROM Livros l INNER JOIN Exemplares ex ON l.Id = ex.IdLivro
 INNER JOIN Emprestimos em ON ex.Id = em.IdExemplar
 WHERE em.DataEmprestimo >= DATEADD(MONTH, -6, GETDATE()) AND l.Categoria = 'Tecnologia' -- Aqui pega a data de 6 meses atrás até hoje
 GROUP BY l.Titulo, l.Categoria ORDER BY COUNT(*) DESC;
+
+-- Quais estudantes nunca fizeram um empréstimo?
+SELECT em.RaEstudante AS 'RA',
+       es.Nome AS 'Nome'
+FROM Estudantes es LEFT JOIN Emprestimos em ON es.RA = em.RaEstudante
+WHERE em.RaEstudante IS NULL 
+ORDER BY es.Nome ASC;
+
+-- Qual a média de dias que os estudantes levam para devolver os livros?
+SELECT es.Nome AS 'Nome',
+       AVG(DATEDIFF(DAY, em.DataEmprestimo, em.DataDevolucaoReal)) AS 'Média de dia das devoluções'
+FROM Estudantes es INNER JOIN Emprestimos em ON es.RA = em.RaEstudante
+WHERE em.DataDevolucaoReal IS NOT NULL
+GROUP BY es.Nome;
+
+
 
 
 
