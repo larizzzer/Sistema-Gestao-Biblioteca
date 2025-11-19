@@ -52,7 +52,7 @@ CREATE TABLE Emprestimos(
     FOREIGN KEY (IdExemplar) REFERENCES Exemplares(Id)
 );
 
--- Alterações nas tabelas, onde o que precisar mudar, mude aqui
+-- Alterações nas tabelas, onde o que precisar mudar
 ALTER TABLE Exemplares ADD UNIQUE (CodigoPatrimonio);
 UPDATE Estudantes SET Nome = 'Larissa Gomes Gaspar' WHERE RA = 2023000100;
 UPDATE Estudantes SET EmailInstitucional = 'larissa.gaspar@uniaazz.org.br' WHERE RA = 2023000100;
