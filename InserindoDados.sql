@@ -1,4 +1,3 @@
-
 -- Visualização de todas as tabelas
 SELECT * FROM Estudantes; SELECT * FROM Autores;
 SELECT * FROM Livros; SELECT * FROM Exemplares;
