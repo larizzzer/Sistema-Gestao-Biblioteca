@@ -33,8 +33,7 @@ WHERE em.DataEmprestimo >= DATEADD(MONTH, -6, GETDATE()) AND l.Categoria = 'Tecn
 GROUP BY l.Titulo, l.Categoria ORDER BY COUNT(*) DESC;
 
 -- Quais estudantes nunca fizeram um empréstimo?
-SELECT em.RaEstudante AS 'RA',
-       es.Nome AS 'Nome'
+SELECT es.Nome AS 'Nome'
 FROM Estudantes es LEFT JOIN Emprestimos em ON es.RA = em.RaEstudante
 WHERE em.RaEstudante IS NULL 
 ORDER BY es.Nome ASC;
@@ -85,20 +84,28 @@ FROM Emprestimos em INNER JOIN Estudantes es ON es.RA = em.RaEstudante
 GROUP BY es.Curso
 ORDER BY COUNT(DISTINCT es.RA) DESC;
 
--- Sistema de cálculo de multas, baseado nos dias atrasados
+-- Consulta que mostra a situação de todos os empréstimos de livros
 SELECT 
-       RaEstudante,
-       DataEmprestimo,
-       DataDevolucaoPrevista,
-       DataDevolucaoReal,
+       em.RaEstudante AS 'RA',
+       es.Nome AS 'Estudante',
+       em.DataEmprestimo AS 'Data do Empréstimo',
+       em.DataDevolucaoPrevista AS 'Data Prevista de Devolução',
+       em.DataDevolucaoReal AS 'Data Real de Devolução',
        CASE
-              WHEN DataDevolucaoReal IS NULL THEN 'Ainda está na data prevista'
-              WHEN DataDevolucaoPrevista < DataDevolucaoReal THEN 'Devolveu antes do previsto'
-              WHEN DataDevolucaoPrevista = DataDevolucaoReal THEN 'Devolveu no prazo'
-              WHEN DataDevolucaoReal > DataDevolucaoPrevista THEN 'Empréstimo está atrasado'
-              ELSE 'Não classificado'
-       END AS 'Sistema de Multas'
-FROM Emprestimos;
+        WHEN DataDevolucaoReal IS NULL THEN
+            CASE -- Empréstimos abertos
+                WHEN GETDATE() > DataDevolucaoPrevista THEN 'Em atraso - Procure a Secretaria para regularizar a sua situação'
+                ELSE 'Em dia (não devolvido)'
+            END
+        WHEN DataDevolucaoReal <= DataDevolucaoPrevista THEN
+            CASE -- Empréstimos devolvidos
+                WHEN DataDevolucaoReal < DataDevolucaoPrevista THEN 'Devolvido antes do prazo'
+                ELSE 'Devolvido no prazo'
+            END
+        WHEN DataDevolucaoReal > DataDevolucaoPrevista THEN 'Devolvido com atraso - Procure a Secretaria para regularizar a sua situação'
+        ELSE 'Situação não identificada'
+       END AS 'Status do Empréstimo'
+FROM Emprestimos em INNER JOIN Estudantes es ON em.RaEstudante = es.RA;
 
 
 SELECT * FROM Estudantes; SELECT * FROM Autores;
