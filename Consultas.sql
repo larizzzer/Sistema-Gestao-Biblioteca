@@ -39,6 +39,14 @@ FROM Estudantes es LEFT JOIN Emprestimos em ON es.RA = em.RaEstudante
 WHERE em.RaEstudante IS NULL 
 ORDER BY es.Nome ASC;
 
+-- Quais exemplares estão em manutenção ou perdidos?
+SELECT l.Titulo AS 'Livro',
+       ex.CodigoPatrimonio AS 'Código',
+       ex.Localizacao AS 'Localização'
+FROM Livros l INNER JOIN Exemplares ex ON l.Id = ex.IdLivro
+WHERE ex.Status = 'em manutenção';
+
+
 -- Qual a média de dias que os estudantes levam para devolver os livros?
 SELECT es.Nome AS 'Nome',
        AVG(DATEDIFF(DAY, em.DataEmprestimo, em.DataDevolucaoReal)) AS 'Média de dia das devoluções'
@@ -46,7 +54,40 @@ FROM Estudantes es INNER JOIN Emprestimos em ON es.RA = em.RaEstudante
 WHERE em.DataDevolucaoReal IS NOT NULL
 GROUP BY es.Nome;
 
+-- Liste todos os empréstimos ativos com detalhes completos. 
+SELECT es.Nome AS 'Estudante',
+       l.Titulo AS 'Livro',
+       em.DataEmprestimo AS 'Data do Empréstimo',
+       em.DataDevolucaoPrevista AS 'Data Prevista de Devolução'
+FROM Livros l INNER JOIN Exemplares ex ON l.Id = ex.IdLivro
+INNER JOIN Emprestimos em ON ex.Id = em.IdExemplar
+INNER JOIN Estudantes es ON es.RA = em.RaEstudante
+WHERE em.DataDevolucaoReal IS NULL -- Aqui indica que o empréstimo está ativo
+ORDER BY em.DataEmprestimo DESC;
 
+-- Quantos livros no acervo são de autores brasileiros?
+SELECT COUNT(*) AS 'Quantidade de livros de autores brasileiros'
+FROM Autores a INNER JOIN Livros l ON a.Id = l.IdAutor
+WHERE a.Nacionalidade = 'Brasileiro';
+
+-- Lista detalhada dos livros que são de autores brasileiros
+SELECT a.Nome AS 'Autor',
+       a.Nacionalidade AS 'Nacionalidade',
+       l.Titulo AS 'Livro'
+FROM Autores a INNER JOIN Livros l ON a.Id = l.IdAutor
+WHERE a.Nacionalidade = 'Brasileiro'
+ORDER BY a.Nome, l.Titulo;
+
+-- Quais cursos têm mais estudantes ativos na biblioteca (ou seja, que já fizeram pelo menos um empréstimo)?
+SELECT es.Curso AS 'Curso',
+       COUNT(DISTINCT es.RA) AS 'Quantidade de Estudantes'
+FROM Emprestimos em INNER JOIN Estudantes es ON es.RA = em.RaEstudante
+GROUP BY es.Curso
+ORDER BY COUNT(DISTINCT es.RA) DESC;
+
+
+
+       
 
 
 
