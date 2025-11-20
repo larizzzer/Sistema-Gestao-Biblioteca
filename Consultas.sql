@@ -85,11 +85,20 @@ FROM Emprestimos em INNER JOIN Estudantes es ON es.RA = em.RaEstudante
 GROUP BY es.Curso
 ORDER BY COUNT(DISTINCT es.RA) DESC;
 
-
-
-       
-
-
+-- Sistema de cálculo de multas, baseado nos dias atrasados
+SELECT 
+       RaEstudante,
+       DataEmprestimo,
+       DataDevolucaoPrevista,
+       DataDevolucaoReal,
+       CASE
+              WHEN DataDevolucaoReal IS NULL THEN 'Ainda está na data prevista'
+              WHEN DataDevolucaoPrevista < DataDevolucaoReal THEN 'Devolveu antes do previsto'
+              WHEN DataDevolucaoPrevista = DataDevolucaoReal THEN 'Devolveu no prazo'
+              WHEN DataDevolucaoReal > DataDevolucaoPrevista THEN 'Empréstimo está atrasado'
+              ELSE 'Não classificado'
+       END AS 'Sistema de Multas'
+FROM Emprestimos;
 
 
 SELECT * FROM Estudantes; SELECT * FROM Autores;
