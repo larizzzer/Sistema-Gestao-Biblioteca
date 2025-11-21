@@ -1,7 +1,7 @@
 
 # Sistema de Gestão de Biblioteca Universitária
 
-Projeto em **T-SQL (SQL Server)** que modela uma biblioteca universitária com controle de acervo, empréstimos e membros **100% em código nativo**, sem Power BI ou ferramentas externas.
+Projeto em **T-SQL (SQL Server)** que modela uma biblioteca universitária com controle de acervo, empréstimos e membros **100% em código nativo**, sem Power BI ou ferramentas externas. Este projeto possui mais foco em modolegem de banco de dados e em reforçar conhecimentos aprendidos.
 
 
 ## ❌ Problema
